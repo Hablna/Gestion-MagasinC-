@@ -61,9 +61,8 @@ namespace TrainingWell
         public void TrierProduitsParNom()
         {
             ListeProduits.Sort(
-                (produit1, produit2) => string.Compare(produit1.Nom, produit1.Nom, StringComparison.OrdinalIgnoreCase)
+                (produit1, produit2) => string.Compare(produit1.Nom, produit2.Nom, StringComparison.OrdinalIgnoreCase)
             );
-                
         }
         public string AfficherProduitsEnRupture()
         {
