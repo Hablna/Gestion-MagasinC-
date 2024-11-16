@@ -1,19 +1,25 @@
 ﻿using TrainingWell;
 
-// Création de produits
-Produit produit1 = new Produit("Chaussures", 50.0m, 20);
-ProduitElectronique produit2 = new ProduitElectronique("Téléphone", 800.0m, 5, 24);
+// Création des produits
+Produit p1 = new Produit("Chaussures", 50m, 10);
+ProduitElectronique p2 = new ProduitElectronique("Téléphone", 800m, 0, 24);
+Produit p3 = new Produit("Sac", 30m, 5);
 
-// Création de l'inventaire
+// Ajout des produits à l’inventaire
 Inventaire inventaire = new Inventaire();
-inventaire.AjouterProduit(produit1);
-inventaire.AjouterProduit(produit2);
+inventaire.AjouterProduit(p1);
+inventaire.AjouterProduit(p2);
+inventaire.AjouterProduit(p3);
 
-// Affichage de l'inventaire
+// Trier les produits par nom
+inventaire.TrierProduitsParNom();
 inventaire.AfficherInventaire();
 
-// Calcul de la valeur totale
-Console.WriteLine($"Valeur totale de l'inventaire : {inventaire.CalculerValeurTotale()}");
+// Rechercher un produit
+Produit result = inventaire.RechercherProduitParNom("téléphone");
+if (result != null)
+    result.AfficherDetails();
 
-// Expédition d'un produit
-inventaire.ExpédierProduit("Téléphone", 2);
+// Afficher les produits en rupture de stock
+Console.WriteLine ($"les produits en rupture de stock: {inventaire.AfficherProduitsEnRupture()}");
+

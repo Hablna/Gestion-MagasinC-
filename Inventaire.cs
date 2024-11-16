@@ -38,6 +38,7 @@ namespace TrainingWell
             }
             return valeurTotale;
         }
+     
 
         public void ExpédierProduit(string nomProduit, int quantité)
         {
@@ -56,5 +57,42 @@ namespace TrainingWell
                 }
             }
         }
+        //trie les produits par nom
+        public void TrierProduitsParNom()
+        {
+            ListeProduits.Sort(
+                (produit1, produit2) => string.Compare(produit1.Nom, produit1.Nom, StringComparison.OrdinalIgnoreCase)
+            );
+                
+        }
+        public string AfficherProduitsEnRupture()
+        {
+            //declarer un tableau de string
+            List<string>StockVide = new List<string>();
+
+            foreach (Produit produit in ListeProduits)
+            {
+                if (produit.QuantitéEnStock == 0)
+                {
+                    StockVide.Add(produit.Nom);
+                }
+            }
+            return string.Join(",", StockVide);
+        }
+        public Produit RechercherProduitParNom(string nomProduit)
+        {
+            var MotTrouve = ListeProduits.FirstOrDefault(produit => produit.Nom.ToLower() == nomProduit.ToLower());
+            if (MotTrouve != null)
+            {
+                return MotTrouve;
+            }
+            else
+            {
+                //message d'erreur
+                Console.WriteLine("Produit non trouvé");
+                return null;
+            }
+        }
     }
+
 }
